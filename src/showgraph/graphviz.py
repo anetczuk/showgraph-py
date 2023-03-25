@@ -13,8 +13,8 @@ import hashlib
 import pydotplus
 from pydotplus.graphviz import quote_if_necessary, graph_from_dot_data
 
-from cppincludegraph.io import read_list
-from cppincludegraph.datadict import get_create_item
+from showgraph.io import read_list
+from showgraph.datadict import get_create_item
 
 
 SCRIPT_DIR = os.path.dirname( os.path.abspath(__file__) )
