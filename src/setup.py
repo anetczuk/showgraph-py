@@ -22,6 +22,7 @@ packages_list = find_packages( include=['showgraph', 'showgraph.*'] )
 
 install_reqs = read_list( os.path.join( SCRIPT_DIR, "requirements.txt" ) )
 
+## every time setup info changes then version number should be increased
 
 setup( name='showgraph',
        version='2.0.1',
