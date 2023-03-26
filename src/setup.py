@@ -24,7 +24,7 @@ install_reqs = read_list( os.path.join( SCRIPT_DIR, "requirements.txt" ) )
 
 
 setup( name='showgraph',
-       version='2.0',
+       version='2.0.1',
        description='draw data relations in form of graph structure',
        url='https://github.com/anetczuk/showgraph-py',
        author="anetczuk",
