@@ -20,7 +20,7 @@ install_reqs  = read_list( requirements_path )
 ## every time setup info changes then version number should be increased
 
 setup( name='showgraph',
-       version='2.0.1',
+       version='2.0.2',
        description='draw data relations in form of graph structure',
        url='https://github.com/anetczuk/showgraph-py',
        author="anetczuk",
