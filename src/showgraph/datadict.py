@@ -7,6 +7,7 @@
 
 import os
 import logging
+import copy
 
 
 SCRIPT_DIR = os.path.dirname( os.path.abspath(__file__) )
@@ -21,6 +22,9 @@ class DataDict():
         self.data = data_dict
         if self.data is None:
             self.data = {}
+
+    def rawdict(self):
+        return copy.deepcopy( self.data )
 
     def keys(self):
         return list( self.data.keys() )
@@ -47,6 +51,63 @@ class DataDict():
             return self.data[ key ]
         except KeyError:
             return value
+
+    def setValue( self, key, item, *args ):
+        """ Set dictionary value. 
+            There are two mandatory values:
+               'key'  -- dictionary key
+               'item' -- other value
+            Depending on optional arguments 'item' will be subkey or value to insert.
+            For example: data.setValue( "key1", 123 ) will create "key1" with value 123.
+            Call: data.setValue( "key1", "subkey2", 123 ) will create subdict containing value 123.
+        """
+
+        args_size = len( args )
+        if args_size < 1:
+            set_value( self.data, key, item )
+            return
+        if args_size == 1:
+            curr_data = self.data.setdefault( key, {} )
+            data_val  = args[0]
+            set_value( curr_data, item, data_val )
+            return
+
+        curr_data = self.data.setdefault( key, {} )
+        curr_data = curr_data.setdefault( item, {} )
+        for i in range( 0, args_size - 2 ):
+            subkey = args[i]
+            curr_data = curr_data.setdefault( subkey, {} )
+        last_key = args[-2]
+        value    = args[-1]
+        set_value( curr_data, last_key, value )
+
+    def setSubdict( self, key, *args ):
+        """ Set dictionary subdict with given keys list. """
+        args_size = len( args )
+        if args_size < 1:
+            self.data.setdefault( key, {} )
+            return
+        curr_data = self.data.setdefault( key, {} )
+        for subkey in args:
+            curr_data = curr_data.setdefault( subkey, {} )
+
+
+def set_value( data_dict, key, value):
+    if key not in data_dict:
+        ## no data -- add new entry
+        data_dict[ key ] = value
+        return
+    curr_item = data_dict[ key ]
+    if isinstance( curr_item, dict ):
+        ## current data is dict -- override with value
+        data_dict[ key ] = value
+        return
+    if isinstance( curr_item, list ):
+        ## current data is list -- append
+        data_dict[ key ].append( value )
+        return
+    ## regular type -- override
+    data_dict[ key ] = [ data_dict[ key ], value ]
 
 
 ## ==================================================

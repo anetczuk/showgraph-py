@@ -1,0 +1,17 @@
+digraph G {
+a;
+b;
+a -> b  [color=darkred];
+d;
+b -> d  [color=navy];
+e;
+b -> e  [color=saddlebrown];
+c;
+a -> c  [color=indigo];
+f;
+c -> f  [color=black];
+h;
+f -> h  [color=darkmagenta];
+g;
+c -> g  [color=darkmagenta];
+}
