@@ -12,7 +12,7 @@ SCRIPT_DIR = os.path.dirname( os.path.abspath(__file__) )
 
 packages_list = find_packages( include=['showgraph', 'showgraph.*'] )
 
-packages_data = { "showgraph": ["*.data.txt"] }
+packages_data = { "showgraph": ["*.dat.txt"] }
 
 requirements_path = os.path.join( SCRIPT_DIR, "requirements.txt" )
 install_reqs  = read_list( requirements_path )
@@ -20,7 +20,7 @@ install_reqs  = read_list( requirements_path )
 ## every time setup info changes then version number should be increased
 
 setup( name='showgraph',
-       version='2.0.3',
+       version='2.0.4',
        description='draw data relations in form of graph structure',
        url='https://github.com/anetczuk/showgraph-py',
        author="anetczuk",
