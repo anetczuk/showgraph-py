@@ -11,9 +11,6 @@ import sys
 import os
 
 import logging
-import unittest
-import re
-import argparse
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -22,12 +19,11 @@ src_dir = os.path.abspath( os.path.join(SCRIPT_DIR, os.pardir, os.pardir, "src")
 sys.path.insert(0, src_dir)
 
 
-from showgraph.datadict import DataDict
-from showgraph.graphviz import Graph
+from showgraph.datadict import DataDict             # pylint: disable=C0413
+from showgraph.graphviz import Graph                # pylint: disable=C0413
 
 
 _LOGGER = logging.getLogger(__name__)
-
 
 
 ## ============================= main section ===================================

@@ -23,7 +23,7 @@ class DataDict():
         if self.data is None:
             self.data = {}
 
-    def rawdict(self):
+    def rawdict(self) -> dict:
         return copy.deepcopy( self.data )
 
     def keys(self):
