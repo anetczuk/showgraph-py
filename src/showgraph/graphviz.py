@@ -22,7 +22,7 @@ SCRIPT_DIR = os.path.dirname( os.path.abspath(__file__) )
 _LOGGER = logging.getLogger(__name__)
 
 
-EDGE_COLORS_PATH = os.path.join( SCRIPT_DIR, "graphviz_dark_colors.data.txt" )
+EDGE_COLORS_PATH = os.path.join( SCRIPT_DIR, "graphviz_dark_colors.dat.txt" )
 EDGE_COLORS_LIST = read_list( EDGE_COLORS_PATH )
 
 
