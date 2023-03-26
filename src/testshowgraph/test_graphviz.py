@@ -131,11 +131,3 @@ node_2;
 node_1 -> node_2  [color=blue];
 }
 """, content )
-        
-#         self.assertEqual( """\
-# digraph G {
-# node_1;
-# node_2;
-# node_1 -> node_2;
-# }
-# """, content )
