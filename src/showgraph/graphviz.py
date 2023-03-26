@@ -228,7 +228,7 @@ class Graph():
             ## node already added
             return None
         return self.addNodeRaw( node_name, shape, label )
-    
+
     def addNodeRaw( self, node_name: str, shape: str = None, label: str = None ) -> pydotplus.Node:
         node = pydotplus.Node( node_name )
         if shape is not None:

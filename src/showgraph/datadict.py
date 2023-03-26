@@ -53,15 +53,15 @@ class DataDict():
             return value
 
     def setValue( self, key, item, *args ):
-        """ Set dictionary value. 
-            There are two mandatory values:
-               'key'  -- dictionary key
-               'item' -- other value
-            Depending on optional arguments 'item' will be subkey or value to insert.
-            For example: data.setValue( "key1", 123 ) will create "key1" with value 123.
-            Call: data.setValue( "key1", "subkey2", 123 ) will create subdict containing value 123.
-        """
+        """Set dictionary value.
 
+        There are two mandatory values:
+           'key'  -- dictionary key
+           'item' -- other value
+        Depending on optional arguments 'item' will be subkey or value to insert.
+        For example: data.setValue( "key1", 123 ) will create "key1" with value 123.
+        Call: data.setValue( "key1", "subkey2", 123 ) will create subdict containing value 123.
+        """
         args_size = len( args )
         if args_size < 1:
             set_value( self.data, key, item )
@@ -82,7 +82,7 @@ class DataDict():
         set_value( curr_data, last_key, value )
 
     def setSubdict( self, key, *args ):
-        """ Set dictionary subdict with given keys list. """
+        """Set dictionary subdict with given keys list."""
         args_size = len( args )
         if args_size < 1:
             self.data.setdefault( key, {} )

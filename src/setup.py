@@ -27,6 +27,6 @@ setup( name='showgraph',
        version='2.0',
        description='draw data relations in form of graph structure',
        url='https://github.com/anetczuk/showgraph-py',
-       packages = packages_list,
-       install_requires = install_reqs
-     )
+       packages=packages_list,
+       install_requires=install_reqs
+       )
