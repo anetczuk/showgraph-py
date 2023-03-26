@@ -2,12 +2,22 @@
 
 Need to draw image with graph? Then use the project to draw data relations in form of graph structure.
 
+Aim of the project is to provide tools facilitating graphs generation.
+
+
+
+## simple example
+
+Simple example can be found in `examples/simple/generate.py`. The script will produce following image:
+
+[![code distribution chart](examples/simple/graph-small.png "code distribution chart")](examples/simple/graph.png)
+
+
 
 ## References
 
 - [pydotplus](https://pypi.org/project/pydotplus/)
 - [GraphViz gallery](https://graphviz.org/gallery/)
-- [Texthon](texthon.chipsforbrain.org/)
 
 
 
