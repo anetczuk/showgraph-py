@@ -287,7 +287,10 @@ class Graph():
         ## shouldn't be: return get_edges_all( self.base_graph )
         return self.base_graph.get_edge_list()
 
-    def getEdges( self, name_from, name_to ) -> List[ pydotplus.Edge ]:
+    def getEdges( self, name_from, name_to, quote_names=False ) -> List[ pydotplus.Edge ]:
+        if quote_names:
+            name_from = quote_if_necessary( name_from )
+            name_to = quote_if_necessary( name_to )
         ret_list = []
         edges = self.getEdgesAll()
         for item in edges:
