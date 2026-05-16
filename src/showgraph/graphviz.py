@@ -34,7 +34,7 @@ class Graph():
         self.base_graph = base_object
 
     def toJSON(self):
-        return self.__str__()
+        return str(self)
 
     def base(self) -> pydotplus.Graph:
         return self.base_graph
@@ -234,7 +234,9 @@ class Graph():
         if shape is not None:
             node.set( "shape", shape )
         if label is not None:
-            node.set( "label", label )
+            # label have to be wrapped around quote, because if label contains colon then there will be
+            # dot syntax error
+            node.set( "label", f"\"{label}\"" )
         self.base_graph.add_node( node )
         return node
 
@@ -343,24 +345,24 @@ class Graph():
         edges = self.getEdgesAll()
         return create_edges_dict( edges )
 
-    def addEdge( self, from_node: str, to_node: str, create_nodes=False ) -> pydotplus.Edge:
-        if self.hasNode(from_node) is False:
+    def addEdge( self, from_node_name: str, to_node_name: str, create_nodes=False ) -> pydotplus.Edge:
+        if self.hasNode(from_node_name) is False:
             if create_nodes is False:
-                _LOGGER.warning( "unable to find from node >%s<", from_node )
+                _LOGGER.warning( "unable to find from node >%s<", from_node_name )
                 return None
-            self.addNode( from_node )
+            self.addNode( from_node_name )
 
-        if self.hasNode(to_node) is False:
+        if self.hasNode(to_node_name) is False:
             if create_nodes is False:
-                _LOGGER.warning( "unable to find to node >%s<", to_node )
+                _LOGGER.warning( "unable to find to node >%s<", to_node_name )
                 return None
-            self.addNode( to_node )
+            self.addNode( to_node_name )
 
-        new_edge = pydotplus.Edge( from_node, to_node )
+        new_edge = pydotplus.Edge( from_node_name, to_node_name )
         self.base_graph.add_edge( new_edge )
 
         if EDGE_COLORS_LIST:
-            edge_string = f"{from_node}-{to_node}"
+            edge_string = f"{from_node_name}-{to_node_name}"
             item_hash   = hashlib.sha256( edge_string.encode('utf-8') ).hexdigest()
             color_index = int( item_hash, 16 ) % len( EDGE_COLORS_LIST )
             edge_color  = EDGE_COLORS_LIST[ color_index ]
@@ -418,16 +420,20 @@ class Graph():
     def fromString( self, content ):
         self.base_graph = graph_from_dot_data( content )
 
+    # 'file_path' -- file path or BytesIO object
     def writeRAW( self, file_path ):
         self.write( file_path, "raw" )
 
+    # 'file_path' -- file path or BytesIO object
     def writePNG( self, file_path ):
         self.write( file_path, "png" )
 
+    # 'file_path' -- file path or BytesIO object
     def writeMap( self, file_path ):
         self.write( file_path, "cmapx" )
         #self.base_graph.write( file_path, prog=self.base_graph.prog, format="cmapx" )
 
+    # 'file_path' -- file path or BytesIO object
     def write( self, file_path, file_format='png'):
         self.base_graph.write( file_path, prog=self.base_graph.prog, format=file_format )
 
