@@ -21,74 +21,74 @@ class DataDictTest(unittest.TestCase):
 
     def test_get(self):
         data = DataDict()
-        value = data.get( 'aaa', 'bbb' )
-        self.assertEqual( value, "bbb" )
+        value = data.get("aaa", "bbb")
+        self.assertEqual(value, "bbb")
 
     def test_get_default(self):
         data = DataDict()
-        value = data.get( 'aaa', value='xxx' )
-        self.assertEqual( value, "xxx" )
+        value = data.get("aaa", value="xxx")
+        self.assertEqual(value, "xxx")
 
     def test_value(self):
         data = DataDict()
-        value = data.value( 'aaa', 'bbb' )
-        self.assertEqual( value, None )
+        value = data.value("aaa", "bbb")
+        self.assertEqual(value, None)
 
     def test_value_default(self):
         data = DataDict()
-        value = data.value( 'aaa', 'bbb', default='xxx' )
-        self.assertEqual( value, "xxx" )
+        value = data.value("aaa", "bbb", default="xxx")
+        self.assertEqual(value, "xxx")
 
     def test_setValue_0(self):
         data = DataDict()
-        data.setValue( "key1", 123 )
-        self.assertEqual( {'key1': 123}, data.rawdict() )
+        data.setValue("key1", 123)
+        self.assertEqual({"key1": 123}, data.rawdict())
 
     def test_setValue_1(self):
         data = DataDict()
-        data.setValue( "key1", "key2", 123 )
-        self.assertEqual( {'key1': {'key2': 123}}, data.rawdict() )
+        data.setValue("key1", "key2", 123)
+        self.assertEqual({"key1": {"key2": 123}}, data.rawdict())
 
     def test_setValue_2(self):
         data = DataDict()
-        data.setValue( "key1", "key2", "key3", 123 )
-        self.assertEqual( {'key1': {'key2': {'key3': 123}}}, data.rawdict() )
+        data.setValue("key1", "key2", "key3", 123)
+        self.assertEqual({"key1": {"key2": {"key3": 123}}}, data.rawdict())
 
     def test_setValue_3(self):
         data = DataDict()
-        data.setValue( "key1", "key2", "key3", "key4", 123 )
-        self.assertEqual( {'key1': {'key2': {'key3': {'key4': 123}}}}, data.rawdict() )
+        data.setValue("key1", "key2", "key3", "key4", 123)
+        self.assertEqual({"key1": {"key2": {"key3": {"key4": 123}}}}, data.rawdict())
 
     def test_setValue_many(self):
         data = DataDict()
-        data.setValue( "1", "2b", "3c", "4a" )
-        data.setValue( "1", "2b", "3d" )
+        data.setValue("1", "2b", "3c", "4a")
+        data.setValue("1", "2b", "3d")
 
-        self.assertEqual( {'1': {'2b': '3d'}}, data.rawdict() )
+        self.assertEqual({"1": {"2b": "3d"}}, data.rawdict())
 
     def test_setSubdict_0(self):
         data = DataDict()
-        data.setSubdict( "key1", 123 )
-        self.assertEqual( {'key1': {123: {}}}, data.rawdict() )
+        data.setSubdict("key1", 123)
+        self.assertEqual({"key1": {123: {}}}, data.rawdict())
 
     def test_setSubdict_1(self):
         data = DataDict()
-        data.setSubdict( "key1", "key2", 123 )
-        self.assertEqual( {'key1': {'key2': {123: {}}}}, data.rawdict() )
+        data.setSubdict("key1", "key2", 123)
+        self.assertEqual({"key1": {"key2": {123: {}}}}, data.rawdict())
 
     def test_setSubdict_2(self):
         data = DataDict()
-        data.setSubdict( "key1", "key2", "key3", 123 )
-        self.assertEqual( {'key1': {'key2': {'key3': {123: {}}}}}, data.rawdict() )
+        data.setSubdict("key1", "key2", "key3", 123)
+        self.assertEqual({"key1": {"key2": {"key3": {123: {}}}}}, data.rawdict())
 
     def test_setSubdict_3(self):
         data = DataDict()
-        data.setSubdict( "key1", "key2", "key3", "key4", 123 )
-        self.assertEqual( {'key1': {'key2': {'key3': {'key4': {123: {}}}}}}, data.rawdict() )
+        data.setSubdict("key1", "key2", "key3", "key4", 123)
+        self.assertEqual({"key1": {"key2": {"key3": {"key4": {123: {}}}}}}, data.rawdict())
 
     def test_setSubdict_many(self):
         data = DataDict()
-        data.setSubdict( "1", "2b", "3c", "4a" )
-        data.setSubdict( "1", "2b", "3d" )
+        data.setSubdict("1", "2b", "3c", "4a")
+        data.setSubdict("1", "2b", "3d")
 
-        self.assertEqual( {'1': {'2b': {'3c': {'4a': {}}, '3d': {}}}}, data.rawdict() )
+        self.assertEqual({"1": {"2b": {"3c": {"4a": {}}, "3d": {}}}}, data.rawdict())

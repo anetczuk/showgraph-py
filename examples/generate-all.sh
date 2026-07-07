@@ -7,8 +7,8 @@ set -eu
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 
-$SCRIPT_DIR/simple/generate.py
+"${SCRIPT_DIR}"/simple/generate.py
 
 
 ## generate small images
-$SCRIPT_DIR/generate_small.sh
+"${SCRIPT_DIR}"/generate_small.sh
