@@ -9,7 +9,6 @@ import copy
 import logging
 import os
 
-
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 _LOGGER = logging.getLogger(__name__)

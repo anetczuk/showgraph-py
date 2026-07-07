@@ -1,0 +1,66 @@
+[project]
+name = "showgraph"
+version = "2.0.7"
+description = "draw data relations in form of graph using *graphviz* engine"
+keywords = ["showgraph", "graphviz", "dot"]
+readme = "README.md"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [
+    ## separate 'name' and 'email' hack to fill "Author:" and "Author-email:" fields
+    { name = "Arkadiusz Netczuk" }, { email = "dev.arnet@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pydotplus"
+]
+
+[project.urls]
+Homepage = "https://github.com/anetczuk/showgraph-py"
+Repository = "https://github.com/anetczuk/showgraph-py"
+
+[project.optional-dependencies]
+dev = [
+    ### dependencies for "tools" scripts
+
+    "xmltodict",    ## for mdpreproc.py
+
+    "black",
+    "pycodestyle",
+    "flake8",
+    "pylint",
+    "ruff",
+    "complexipy",
+    "bandit",
+    "codespell",
+    "shellcheck_py",
+    "pydocstyle",
+    "mypy",
+    "coverage",             ## for coverage.sh
+    "mdlinkscheck",
+
+    ## for profiling (tools/profiler.sh)
+    "pyprof2calltree",   
+    "snakeviz",
+    "mtprof",
+    "viztracer",
+]
+
+#[project.scripts]
+#myprogramexec = "myprogrampkg.main:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["showgraph*"]
+
+#[tool.setuptools.package-data]
+#myprogramexec = [
+#    "*.dat.txt",
+#]
+
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"

@@ -2,7 +2,7 @@
 
 Need to draw image with graph? Then use the project to draw data relations in form of graph structure.
 
-Aim of the project is to provide tools facilitating graphs generation.
+Aim of the project is to provide tools facilitating graphs generation using *graphviz* engine.
 
 
 
@@ -23,6 +23,8 @@ Simple example can be found in `examples/simple/generate.py`. The script will pr
 
 ## License
 
+<!-- insertstart include="LICENSE" pre="\n```\n" post="```\n" -->
+```
 BSD 3-Clause License
 
 Copyright (c) 2022, Arkadiusz Netczuk <dev.arnet@gmail.com>
@@ -51,3 +53,5 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+<!-- insertend -->

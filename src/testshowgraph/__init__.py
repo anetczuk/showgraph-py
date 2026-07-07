@@ -8,7 +8,6 @@
 import os
 import sys
 
-
 MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 #### append source root to front (gives priority)

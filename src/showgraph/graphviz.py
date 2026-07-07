@@ -16,7 +16,6 @@ from pydotplus.graphviz import graph_from_dot_data, quote_if_necessary
 from showgraph.datadict import get_create_item
 from showgraph.io import read_list
 
-
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 _LOGGER = logging.getLogger(__name__)
