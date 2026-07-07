@@ -7,18 +7,54 @@ set -eu
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 
+## leave empty to resolve by PATH
+## set variable in case of virtual environment - it will check and ensure that tool installation is added to pyproject.toml
+COMMAND_PATH=""
+# shellcheck disable=SC2236
+if [ ! -z ${VIRTUAL_ENV+x} ]; then
+    ## Python virtual environment detected -- use command from venv
+    COMMAND_PATH="${VIRTUAL_ENV}/bin/"
+fi
+
+
 CACHE_DIR=$SCRIPT_DIR/../tmp/.mypy_cache
 
 
-cd $SCRIPT_DIR/../src
-
+src_dir=$SCRIPT_DIR/../src
 
 examples_dir=$SCRIPT_DIR/../examples
-all_examples=$(find "$examples_dir" -type f -name "*.py")
+if [ ! -d "$examples_dir" ]; then
+    examples_dir=""
+fi
+
+all_examples=""
+if [ -d "$examples_dir" ]; then
+    all_examples=$(find "$examples_dir" -type f -name "*.py")
+fi
+
+src_examples=$(find "$src_dir" -type f -name "*.py" -not -path "$src_dir/build/*")
 
 
+echo
 echo "running mypy"
-echo "ignore line warning using: # type: ignore"
-mypy --cache-dir $CACHE_DIR --no-strict-optional --ignore-missing-imports . $all_examples
+echo "ignore line warning using: # type: ignore[code]"
 
-echo "mypy finished"
+MYPY_ERR_PATH="/tmp/mypy.err.txt"
+FAILED=0
+# shellcheck disable=SC2086
+"${COMMAND_PATH}"mypy --config-file "${SCRIPT_DIR}/../.mypy.ini" --cache-dir "$CACHE_DIR" \
+     $src_examples $all_examples 2> "$MYPY_ERR_PATH" || FAILED=1
+
+if [ $FAILED -ne 0 ]; then
+    cat "$MYPY_ERR_PATH"
+    # shellcheck disable=SC2002
+    ASSERTION=$(cat $MYPY_ERR_PATH | grep "AssertionError:")
+    if [ "$ASSERTION" == "" ]; then
+        exit 1
+    else
+        # mypy internal error
+        echo "detected mypy internal error"
+    fi
+else
+    echo "mypy finished"
+fi

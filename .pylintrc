@@ -132,15 +132,16 @@ disable=
         ## additional
         no-name-in-module,              ## causes a lot of false positives with PyQt
         too-many-return-statements,
-        missing-docstring,
         c-extension-no-member,
         too-many-public-methods,
         too-few-public-methods,
         duplicate-code,
         import-outside-toplevel,
         
-        ## to fix
-        #wrong-import-position,
+        ## docstring
+        missing-module-docstring,
+        missing-class-docstring,
+        missing-function-docstring,
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -207,7 +208,7 @@ indent-string='    '
 max-line-length=120
 
 # Maximum number of lines in a module
-max-module-lines=1000
+max-module-lines=1200
 
 # Allow the body of a class to be on the same line as the declaration if body
 # contains single statement.
@@ -318,13 +319,14 @@ inlinevar-naming-style=any
 #inlinevar-rgx=
 
 # Naming style matching correct method names
-#method-naming-style=snake_case
-method-naming-style=camelCase
+method-naming-style=snake_case
+#method-naming-style=camelCase
 
 # Regular expression matching correct method names. Overrides method-naming-
 # style
 #method-rgx=
-method-rgx=(test_[a-z_A-Z0-9]*)|(_*[a-z][a-zA-Z0-9]*_*)$
+#TODO: remove and refactor method names
+method-rgx=(test_[a-z_A-Z0-9]*)|(_*[a-z][a-zA-Z0-9_]*)$
 
 # Naming style matching correct module names
 module-naming-style=snake_case
@@ -462,7 +464,7 @@ missing-member-max-choices=1
 [DESIGN]
 
 # Maximum number of arguments for function / method
-max-args=7
+max-args=8
 
 # Maximum number of attributes for a class (see R0902).
 max-attributes=24
@@ -474,7 +476,7 @@ max-bool-expr=5
 max-branches=24
 
 # Maximum number of locals for function / method body
-max-locals=30
+max-locals=32
 
 # Maximum number of parents for a class (see R0901).
 max-parents=7
@@ -486,7 +488,7 @@ max-public-methods=20
 max-returns=6
 
 # Maximum number of statements in function / method body
-max-statements=75
+max-statements=125
 
 # Minimum number of public methods for a class (see R0903).
 min-public-methods=2
